@@ -1,5 +1,5 @@
 
-    var duration = 10
+    var duration = 50
     $('.actions').on('click', 'button', function (e) {
         let $button = $(e.currentTarget) // button
         let speed = $button.attr('data-speed')
@@ -7,13 +7,13 @@
             .siblings('.active').removeClass('active')
         switch (speed) {
             case 'slow':
-                duration = 100
+                duration = 120
                 break
             case 'normal':
                 duration = 50
                 break
             case 'fast':
-                duration = 10
+                duration = 5
                 break
         }
     })
@@ -27,7 +27,7 @@
 
         id = setTimeout(function run() {
             n += 1
-            container.innerHTML = code.substring(0, n)
+            container.innerHTML = Prism.highlight(prefix+code.substring(0,n),Prism.languages.css)
             styleTag.innerHTML = code.substring(0, n)
             window.scrollTo(0, codeview.scrollHeight);
             if (n < code.length) {
@@ -39,7 +39,10 @@
     }
 
     let code = `
-    .view-wapper{
+  /* 来画个画吧，
+   *先准备个画布
+   */
+     .view-wapper{
     background-color: #fff827;
 }
  .pikachu-wrapper{
@@ -48,6 +51,7 @@
      position: relative;
      border-color: #fff827;
  }
+ 
  .nose{
      width: 0px;
      height: 0px;
