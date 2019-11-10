@@ -1,76 +1,46 @@
-*{
-    margin: 0;padding: 0;box-sizing: border-box;
-}
-*::after{
-    box-sizing: 0;
-}*::before{
-    box-sizing: 0;
-}
-*{
-    transition: all 0.3s;
-}
- body{
-     height: 100vh;
-     display:flex;
-     flex-direction: column;
-     background-color: rgba(218, 255, 188, 0.08);
-     position: relative;
- }
 
-.code-wrapper{
-    flex:1;
-    height: 60%;
-    padding: 10px;
-}
+    var duration = 10
+    $('.actions').on('click', 'button', function (e) {
+        let $button = $(e.currentTarget) // button
+        let speed = $button.attr('data-speed')
+        $button.addClass('active')
+            .siblings('.active').removeClass('active')
+        switch (speed) {
+            case 'slow':
+                duration = 100
+                break
+            case 'normal':
+                duration = 50
+                break
+            case 'fast':
+                duration = 10
+                break
+        }
+    })
 
-#code{
-    /*overflow: hidden;*/
-    height: 100%;
-}
-.actions{
-    position: fixed;
-    right: 10px;
-    top: 5px;
-    display: flex;
-    flex-direction: column;
-}
-.actions>button{
-    margin: 10px;
-    background: #877ddd;
-    padding: 8px 10px;
-    border: none;
-    border-radius: 5px;
-    box-shadow: -1px -1px 1px rgba(44, 250, 61, 0.76);
-}
-.actions>button.active{
-    box-shadow: -5px -5px 5px rgba(250, 16, 17, 0.76);
-    border: red 1px solid;
-    background-color: #ff4e6c;
-    color: white;
-    font-weight: bolder;
-}
+    function writeCode(prefix, code, fn) {
+        let container = document.querySelector('#code')
+        let styleTag = document.querySelector('#styleTag')
+        let codeview = document.querySelector('#code-warapper')
+        let n = 0
+        let id
 
-.view-wapper{
-    flex: 1;
-    height: 40%;
-    width: 100%;
+        id = setTimeout(function run() {
+            n += 1
+            container.innerHTML = code.substring(0, n)
+            styleTag.innerHTML = code.substring(0, n)
+            window.scrollTo(0, codeview.scrollHeight);
+            if (n < code.length) {
+                id = setTimeout(run, duration)
+            } else {
+                fn && fn.call()
+            }
+        }, duration)
+    }
+
+    let code = `
+    .view-wapper{
     background-color: #fff827;
-    padding-top: 20px;
-    position: fixed;
-    bottom: 0;
-}
- /**默认样式*/
-
-
-
-
-
-/*
-
- *
-.view-wapper{
-    background-color: #fff827;
-
 }
  .pikachu-wrapper{
      width: 100%;
@@ -186,10 +156,9 @@
     position: absolute;
     left: 50%;
     margin-left: -150px;
-    height: 120px;
+     height: 120px;
     overflow: hidden;
     width: 300px;
+    `
+    writeCode('',code)
 
-}
-
- */

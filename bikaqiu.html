@@ -5,20 +5,41 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>比卡丘</title>
     <link rel="stylesheet" href="./bikaqiu.css">
+    <style id="styleTag"></style>
 </head>
 <body>
-<div class="wrapper">
+<div class="code-warapper" id="code-warapper">
+    <pre id="code">
+
+    </pre>
+</div>
+<div class="view-wapper">
+
+
+<div class="pikachu-wrapper">
     <div class="nose"></div>
     <div class="eye left"></div>
     <div class="eye right"></div>
     <div class="face left"></div>
     <div class="face right"></div>
-    <div class="upperLip left"></div>
-    <div class="upperLip right"></div>
+
     <div class="lowerLip-wrapper">
         <div class="lowerLip"></div>
     </div>
+    <div class="upperLip left"></div>
+    <div class="upperLip right"></div>
 
 </div>
+</div>
+<div class="actions">
+    <button data-speed="slow">慢速</button>
+    <button data-speed="normal" class="active">中速</button>
+    <button data-speed="fast">快速</button>
+</div>
+
+<script src="./jquery.min.js"></script>
+<script src="./drawing.js"></script>
 </body>
 </html>
+
+
